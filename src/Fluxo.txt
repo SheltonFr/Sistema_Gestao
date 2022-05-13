@@ -1,0 +1,22 @@
+
+Fluxo Do Programa:
+
+ - Exibir Menu de escolha do tipo de Usuario:
+    - Gerente
+    - Medico
+
+- Gerente
+    - Criar gerente / Fazer Login
+        - LOGIN
+            -Inserir Username
+            -Inserir Senha
+            - Abrir Menu Do Gerente
+        - CRIAR GERENTE
+            - Pedir Username
+            - Pedir Senha
+            -Voltar ao menu
+- Medico
+    - Login
+        -Inserir Username
+        -Inserir Senha
+        -Abrir Menu Do Medico

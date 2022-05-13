@@ -4,7 +4,7 @@ import com.entidades.classes.pessoas.Medico;
 import com.entidades.classes.pessoas.Paciente;
 
 public interface IGerente {
-    public abstract void cadastrarMedico();
+    public abstract Medico cadastrarMedico();
     public abstract void listarMedicos();
     public abstract void verMedico(Medico medico);
    // public abstract void removerMedico();

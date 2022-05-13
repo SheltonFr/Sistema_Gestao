@@ -1,15 +1,15 @@
 package com.entidades.classes.pessoas;
 
+import com.entidades.classes.Funcionario;
 import com.entidades.classes.informacoes.Entrada;
 import com.entidades.interfaces.IGerente;
 
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Gerente implements IGerente{
-
-    private ArrayList<Medico> medicos;
-    private ArrayList<Paciente> pacientes;
+public class Gerente extends Funcionario implements IGerente{
+    private static ArrayList<Medico> medicos;
+    private static ArrayList<Paciente> pacientes;
 
     public Gerente(){
         medicos = new ArrayList<>();
@@ -18,12 +18,41 @@ public class Gerente implements IGerente{
 
     Scanner sc  = new Scanner(System.in);
 
-    @Override
-    public void cadastrarMedico(){
-        Medico medico = new Medico();
+    public void criarGerente(){
+
+
+        System.out.println("-----PAGINA DE CADASTRO DE GERENTES-----");
+
+        System.out.println("Insira o Username: ");
+        this.setLogin(sc.next());
+
+        System.out.println("Insira a Senha: ");
+        this.setSenha(sc.next());
 
         System.out.println("Nome: ");
-        medico.nome = sc.next();
+        this.nome = sc.nextLine();
+        sc.nextLine();
+
+        System.out.println("Idade: ");
+        this.idade = sc.nextInt();
+
+        System.out.println("Sexo: ");
+        this.sexo = sc.next();
+    }
+
+    @Override
+    public Medico cadastrarMedico(){
+        Medico medico = new Medico();
+
+        System.out.println("Insira um Username: ");
+        this.setLogin(sc.next());
+
+        System.out.println("Insira uma Senha: ");
+        this.setSenha(sc.next());
+
+        System.out.println("Nome: ");
+        medico.nome = sc.nextLine();
+        sc.nextLine();
 
         System.out.println("Idade: ");
         medico.idade = sc.nextInt();
@@ -38,6 +67,7 @@ public class Gerente implements IGerente{
 
         medicos.add(medico);
 
+        return medico;
 
     }
 
@@ -111,5 +141,13 @@ public class Gerente implements IGerente{
         entrada.setAnoEntrada(sc.nextInt());
 
         paciente.setHistorico(entrada);
+    }
+
+    public void showMenu(){
+        System.out.println("------Menu Principal-------");
+        System.out.println("1 - Cadastrar Medico");
+        System.out.println("2 - Cadastrar Paciente");
+        System.out.println("3 - Lista de pacientes");
+        System.out.println("4 - Lista de Medicos");
     }
 }

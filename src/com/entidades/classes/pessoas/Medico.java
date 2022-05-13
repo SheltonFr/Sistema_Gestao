@@ -32,11 +32,13 @@ public class Medico extends Funcionario implements IMedico {
     @Override
     public void formularRelatorio(){
         Relatorio relatorio = new Relatorio();
-
     }
 
-
-
+    public void showMenu(){
+        System.out.println("1 - Registar paciente");
+        System.out.println("2 - Atender Paciente");
+        System.out.println("3 - Ver Lista de pacientes");
+    }
 
 
 
