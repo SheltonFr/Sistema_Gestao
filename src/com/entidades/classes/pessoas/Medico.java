@@ -4,7 +4,6 @@ package com.entidades.classes.pessoas;
 import com.entidades.interfaces.IMedico;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Medico extends Gerente implements IMedico {
     public ArrayList<Paciente> pacientes;
@@ -14,18 +13,20 @@ public class Medico extends Gerente implements IMedico {
 
     {
         numMedicos++;
+        numRegisto = numMedicos;
         pacientes = new ArrayList<>();
     }
 
     @Override
     public Paciente marcarConsulta(){
-        return super.registarPaciente();
+        Paciente p = super.registarPaciente();
+        pacientes.add(p);
+        return p;
     }
 
     @Override
     public void atenderPaciente(Paciente paciente){
         int choice = 0;
-        String ops;
         while (choice != 5){
             this.menuAtendimento();
             choice = sc.nextInt();
@@ -63,7 +64,6 @@ public class Medico extends Gerente implements IMedico {
             }
         }
     }
-
     public void meusPacientes(){
         if(this.pacientes.size() == 0){
             System.out.println("Nao ha pacientes registados");
@@ -95,7 +95,7 @@ public class Medico extends Gerente implements IMedico {
 
     // Escolher o paciente a ser atendido apartir de uma lista numerada
     public Paciente escolherPaciente(){
-        this.listarPacientes();
+        this.meusPacientes();
         System.out.println("Selecione o paciente a ser atendido: ");
         int i = sc.nextInt();
         return this.pacientes.get(i-1);
@@ -120,7 +120,7 @@ public class Medico extends Gerente implements IMedico {
 
     @Override
     public String toString() {
-        return  String.format("nome: %s%nIdade: %d%nSexo: %s%nEspecialidade: %s%n",
-                nome, idade, sexo, especialidade);
+        return  String.format("Meddico id: %d%nNome: %s%nIdade: %d%nEspecialidade: %s%n",
+                getNumRegisto(),this.nome, idade, especialidade);
     }
 }

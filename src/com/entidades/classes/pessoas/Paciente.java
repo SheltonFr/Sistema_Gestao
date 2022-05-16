@@ -44,12 +44,14 @@ public class Paciente extends Pessoa{
         System.out.println("Altura do paciente: ");
         r.setAltura(sc.nextFloat());
 
+        sc.next();
         System.out.println("Comentario Medico: ");
         r.setComentarioMedico(sc.nextLine());
 
         this.historico.get(historico.size()-1).situacaoPaciente.add(r);
 
     }
+
     public void setIdPaciente(int idPaciente){
         this.idPaciente = idPaciente;
     }

@@ -31,20 +31,6 @@ public class Entrada {
         }
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public int getDiaEntrada() {
         return diaEntrada;
     }

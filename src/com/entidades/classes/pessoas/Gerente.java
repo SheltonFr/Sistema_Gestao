@@ -44,9 +44,8 @@ public class Gerente extends Funcionario implements IGerente{
         System.out.println("Idade: ");
         medico.idade = sc.nextInt();
 
-        System.out.println("Sexo: ");
-        medico.sexo = sc.next();
-
+        System.out.println("Especialidade: ");
+        medico.setEspecialidade(sc.next());
 
         medico.setNumRegisto(Medico.numMedicos);
 
@@ -91,6 +90,7 @@ public class Gerente extends Funcionario implements IGerente{
        pacientes.add(paciente);
        return paciente;
     }
+
     @Override
     public void listarPacientes(){
         if(Gerente.pacientes.size() == 0){

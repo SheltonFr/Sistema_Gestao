@@ -42,14 +42,14 @@ public class Fluxo {
     public void startMedico(Medico activo){
         int choice = 0;
         String escolhas;
-        while (choice != 4 && activo != null){
+        while (choice != 6 && activo != null){
             activo.showMenu();
             choice = sc.nextInt();
 
             switch (choice){
                 case 1:
-                    //Paciente pac = activo.escolherPaciente();
-                    activo.atenderPaciente(activo.escolherPaciente());
+                    Paciente pac = activo.escolherPaciente();
+                    activo.atenderPaciente(pac);
                     break;
                 case 2:
                     activo.listarPacientes();
@@ -65,6 +65,8 @@ public class Fluxo {
                     System.out.println("-----PERFIL-----");
                     System.out.println(activo.toString());
                     break;
+                case 6:
+                    activo = null;
                 default:
                     System.out.println("Opcao invalida!");
                     break;
@@ -75,12 +77,11 @@ public class Fluxo {
             if(escolhas.equalsIgnoreCase("s")){
                 continue;
             }else{
-                choice = 4;
+                choice = 6;
             }
 
         }
 
-        activo = null;
         System.out.println("Seccao terminada com sucesso!");
         this.start();
 
