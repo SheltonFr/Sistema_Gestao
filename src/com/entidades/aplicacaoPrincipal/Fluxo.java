@@ -2,6 +2,7 @@ package com.entidades.aplicacaoPrincipal;
 
 import com.entidades.classes.pessoas.Gerente;
 import com.entidades.classes.pessoas.Medico;
+import com.entidades.classes.pessoas.Paciente;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -11,14 +12,11 @@ public class Fluxo {
     Scanner sc = new Scanner(System.in);
     private ArrayList<Gerente> gerentes;
     private ArrayList<Medico> medicos;
-    //Gerente g  = new Gerente();
-
     {
         gerentes = new ArrayList<>();
         medicos = new ArrayList<>();
         this.start();
     }
-
     public void start(){
 
         int choice ;
@@ -33,7 +31,7 @@ public class Fluxo {
                     this.escolherMedico();
                     break;
                 case 3:
-                    System.out.println("saindo");
+                    System.out.println("Fechando o programa");
                     break;
                 default:
                     break;
@@ -42,10 +40,51 @@ public class Fluxo {
 
     }
     public void startMedico(Medico activo){
-        activo.showMenu();
+        int choice = 0;
+        String escolhas;
+        while (choice != 4 && activo != null){
+            activo.showMenu();
+            choice = sc.nextInt();
+
+            switch (choice){
+                case 1:
+                    //Paciente pac = activo.escolherPaciente();
+                    activo.atenderPaciente(activo.escolherPaciente());
+                    break;
+                case 2:
+                    activo.listarPacientes();
+                    break;
+                case 3:
+                    activo.meusPacientes();
+                    break;
+                case 4:
+                    Paciente p = activo.marcarConsulta();
+                    p.medico = activo;
+                    break;
+                case 5:
+                    System.out.println("-----PERFIL-----");
+                    System.out.println(activo.toString());
+                    break;
+                default:
+                    System.out.println("Opcao invalida!");
+                    break;
+            }
+
+            System.out.println("Voltar ao menu Medico[s/n]?");
+            escolhas = sc.next();
+            if(escolhas.equalsIgnoreCase("s")){
+                continue;
+            }else{
+                choice = 4;
+            }
+
+        }
+
+        activo = null;
+        System.out.println("Seccao terminada com sucesso!");
+        this.start();
+
     }
-
-
     public void startGerente(Gerente activo){ //Quando logar o gerente()
         int choice = 0;
         String escolhas;
@@ -84,11 +123,10 @@ public class Fluxo {
             }
         }
 
-        activo = null;
+        //activo = null;
         System.out.println("Seccao terminada com sucesso!");
         this.start();
     }
-
     public void loginGerente(){
         System.out.println("Username: ");
         String username = sc.next();
@@ -127,18 +165,18 @@ public class Fluxo {
 
         Medico activo = null;
         for(Medico m: medicos){
-            if(m.validarLogin(username, senha)){
+            if(m.validarLogin(username,senha)){
                  activo = m;
                  break;
             }
         }
-
         if(activo != null){
             this.startMedico(activo);
         }else{
             System.out.println("Username e/ou sehnha invalidas");
         }
     }
+
     public void escolherGerente(){
         if(gerentes.size() == 0){
             System.out.println("Sem contas Cadastradas! ");

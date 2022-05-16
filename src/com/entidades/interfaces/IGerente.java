@@ -14,10 +14,8 @@ public interface IGerente {
     public abstract Medico cadastrarMedico();
     public abstract void listarMedicos();
     public abstract void verMedico(Medico medico);
-   // public abstract void removerMedico();
-    public abstract void registarPaciente();
+    public abstract Paciente registarPaciente();
     public abstract void listarPacientes();
-   // public abstract void removerPaciente();
     public abstract void criarEntrada(Paciente paciente);
 
 }

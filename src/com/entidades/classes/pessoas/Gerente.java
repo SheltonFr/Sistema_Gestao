@@ -3,7 +3,6 @@ package com.entidades.classes.pessoas;
 import com.entidades.classes.informacoes.Entrada;
 import com.entidades.interfaces.IGerente;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Gerente extends Funcionario implements IGerente{
@@ -12,14 +11,13 @@ public class Gerente extends Funcionario implements IGerente{
 
     public void criarGerente(){
 
-
         System.out.println("Insira o Username: ");
         this.setLogin(sc.next());
 
         System.out.println("Insira a Senha: ");
         this.setSenha(sc.next());
 
-    /*    System.out.println("Nome: ");
+        System.out.println("Nome: ");
         this.nome = sc.nextLine();
         sc.nextLine();
 
@@ -27,20 +25,19 @@ public class Gerente extends Funcionario implements IGerente{
         this.idade = sc.nextInt();
 
         System.out.println("Sexo: ");
-        this.sexo = sc.next();*/
+        this.sexo = sc.next();
     }
-
     @Override
     public Medico cadastrarMedico(){
         Medico medico = new Medico();
 
         System.out.println("Insira um Username: ");
-        this.setLogin(sc.next());
+        medico.setLogin(sc.next());
 
         System.out.println("Insira uma Senha: ");
-        this.setSenha(sc.next());
+        medico.setSenha(sc.next());
 
-      /*  System.out.println("Nome: ");
+        System.out.println("Nome: ");
         medico.nome = sc.nextLine();
         sc.nextLine();
 
@@ -48,7 +45,7 @@ public class Gerente extends Funcionario implements IGerente{
         medico.idade = sc.nextInt();
 
         System.out.println("Sexo: ");
-        medico.sexo = sc.next();*/
+        medico.sexo = sc.next();
 
 
         medico.setNumRegisto(Medico.numMedicos);
@@ -58,12 +55,10 @@ public class Gerente extends Funcionario implements IGerente{
         return medico;
 
     }
-
     @Override
     public void verMedico(Medico medico){
         System.out.println(medico.toString());
     }
-
     @Override
     public void listarMedicos(){
         if(this.medicos.size() == 0){
@@ -76,30 +71,26 @@ public class Gerente extends Funcionario implements IGerente{
     }
 
     @Override
-    public void registarPaciente(){
+    public Paciente registarPaciente(){
         Paciente paciente = new Paciente();
 
         System.out.println("Nome: ");
         paciente.nome = sc.next();
 
-     /*   System.out.println("Idade: ");
+        System.out.println("Idade: ");
         paciente.idade = sc.nextInt();
 
         System.out.println("Sexo: ");
         paciente.sexo = sc.next();
 
         System.out.println("Tipo sanguineo: ");
-        paciente.tipoSanguineo = sc.next();*/
+        paciente.tipoSanguineo = sc.next();
 
        paciente.setIdPaciente(Paciente.numPacientes);
        criarEntrada(paciente);
        pacientes.add(paciente);
-
-
+       return paciente;
     }
-
-
-
     @Override
     public void listarPacientes(){
         if(Gerente.pacientes.size() == 0){
@@ -113,12 +104,10 @@ public class Gerente extends Funcionario implements IGerente{
             }
         }
     }
-
     @Override
     public void criarEntrada(Paciente paciente){
         Entrada entrada = new Entrada();
 
-        entrada.setIdEntrada(1);
         System.out.println("Dados de entrada: ");
         System.out.print("Dia: ");
         entrada.setDiaEntrada(sc.nextInt());
@@ -130,12 +119,10 @@ public class Gerente extends Funcionario implements IGerente{
 
         paciente.setHistorico(entrada);
     }
-
     @Override
     public String toString() {
         return String.format("Nome: %s%nIdade: %d%nTipo de conta: Gerente", this.nome, this.idade);
     }
-
     public void showMenu(){
         System.out.println("------Menu Gerente-------");
         System.out.println("1 - Cadastrar Medico.");

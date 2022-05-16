@@ -3,10 +3,9 @@ package com.entidades.classes.informacoes;
 import com.entidades.classes.procedimentos.Enfermidade;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Relatorio {
-    private int idRelatorio;
-    private String comentarioEnfermeiro;
     private String comentarioMedico;
     private float peso;
     private float altura;
@@ -16,32 +15,13 @@ public class Relatorio {
         doenca = new ArrayList<>();
     }
 
-    public Relatorio(int idRelatorio, String comentarioEnfermeiro, String comentarioMedico, float peso, float altura, ArrayList<Enfermidade> doenca) {
-        this.idRelatorio = idRelatorio;
-        this.comentarioEnfermeiro = comentarioEnfermeiro;
-        this.comentarioMedico = comentarioMedico;
-        this.peso = peso;
-        this.altura = altura;
-        this.doenca = doenca;
-    }
-
     public Relatorio(){}
 
-    public int getIdRelatorio() {
-        return idRelatorio;
+    public String mostrarRelatorio(){
+        return String.format("Peso: %.3f%nAltura: %.2f%nComentario Medico:%n%s%n", peso,altura, comentarioMedico);
     }
 
-    public void setIdRelatorio(int idRelatorio) {
-        this.idRelatorio = idRelatorio;
-    }
 
-    public String getComentarioEnfermeiro() {
-        return comentarioEnfermeiro;
-    }
-
-    public void setComentarioEnfermeiro(String comentarioEnfermeiro) {
-        this.comentarioEnfermeiro = comentarioEnfermeiro;
-    }
 
     public String getComentarioMedico() {
         return comentarioMedico;

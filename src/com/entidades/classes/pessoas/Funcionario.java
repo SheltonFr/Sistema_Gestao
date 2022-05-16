@@ -27,7 +27,7 @@ public class Funcionario extends Pessoa implements ILogin {
 
     @Override
     public boolean validarLogin(String username, String senha){
-        if(getLogin().equals(username) && getSenha().equals(senha)){
+        if(this.login.equals(username) && this.senha.equals(senha)){
             return true;
         }else{
             return false;

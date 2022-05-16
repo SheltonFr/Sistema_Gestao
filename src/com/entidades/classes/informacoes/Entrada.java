@@ -4,23 +4,46 @@ package com.entidades.classes.informacoes;
 import java.util.ArrayList;
 
 public class Entrada {
-    private int idEntrada;
     private int diaEntrada;
     private String  mesEntrada;
     private int anoEntrada;
-    ArrayList<Relatorio> situacaoPaciente;
+    public  ArrayList<Relatorio> situacaoPaciente;
 
     {
         situacaoPaciente = new ArrayList<>();
     }
 
-    public int getIdEntrada() {
-        return idEntrada;
+
+
+    public void mostrarEntrada(){
+        System.out.printf("Data: %d/%s/%d%n", diaEntrada,mesEntrada,anoEntrada);
+        exibirSituacao();
+
     }
 
-    public void setIdEntrada(int idEntrada) {
-        this.idEntrada = idEntrada;
+    public void exibirSituacao(){
+        if(this.situacaoPaciente.size() == 0){
+            System.out.println("Nao ha diagnosticos registados");
+        }else{
+            for(Relatorio r: situacaoPaciente){
+                r.mostrarRelatorio();
+            }
+        }
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public int getDiaEntrada() {
         return diaEntrada;
