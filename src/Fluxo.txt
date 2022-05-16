@@ -14,9 +14,18 @@ Fluxo Do Programa:
         - CRIAR GERENTE
             - Pedir Username
             - Pedir Senha
-            -Voltar ao menu
+            - voltar ao menu
+        -Menu gerente
+            - Cadastrar medico
+            - Registar paciente
 - Medico
     - Login
         -Inserir Username
         -Inserir Senha
         -Abrir Menu Do Medico
+    - Menu Medico
+        - Ver paciente (mostrar uma lista e escolher)
+        - Atender paciente
+            - Escrever relatorio
+            ...
+

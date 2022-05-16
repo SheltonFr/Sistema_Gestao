@@ -1,6 +1,5 @@
 package com.entidades.classes.pessoas;
 
-import com.entidades.classes.Funcionario;
 import com.entidades.classes.informacoes.Entrada;
 import com.entidades.interfaces.IGerente;
 
@@ -8,20 +7,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Gerente extends Funcionario implements IGerente{
-    private static ArrayList<Medico> medicos;
-    private static ArrayList<Paciente> pacientes;
-
-    public Gerente(){
-        medicos = new ArrayList<>();
-        pacientes = new ArrayList<>();
-    }
 
     Scanner sc  = new Scanner(System.in);
 
     public void criarGerente(){
 
-
-        System.out.println("-----PAGINA DE CADASTRO DE GERENTES-----");
 
         System.out.println("Insira o Username: ");
         this.setLogin(sc.next());
@@ -29,7 +19,7 @@ public class Gerente extends Funcionario implements IGerente{
         System.out.println("Insira a Senha: ");
         this.setSenha(sc.next());
 
-        System.out.println("Nome: ");
+    /*    System.out.println("Nome: ");
         this.nome = sc.nextLine();
         sc.nextLine();
 
@@ -37,7 +27,7 @@ public class Gerente extends Funcionario implements IGerente{
         this.idade = sc.nextInt();
 
         System.out.println("Sexo: ");
-        this.sexo = sc.next();
+        this.sexo = sc.next();*/
     }
 
     @Override
@@ -50,18 +40,16 @@ public class Gerente extends Funcionario implements IGerente{
         System.out.println("Insira uma Senha: ");
         this.setSenha(sc.next());
 
-        System.out.println("Nome: ");
+      /*  System.out.println("Nome: ");
         medico.nome = sc.nextLine();
         sc.nextLine();
 
         System.out.println("Idade: ");
         medico.idade = sc.nextInt();
 
-        System.out.println("Sexo[M/F]: ");
-        medico.sexo = sc.next();
+        System.out.println("Sexo: ");
+        medico.sexo = sc.next();*/
 
-        System.out.println("Tipo sanguineo: ");
-        medico.tipoSanguineo = sc.next();
 
         medico.setNumRegisto(Medico.numMedicos);
 
@@ -83,7 +71,7 @@ public class Gerente extends Funcionario implements IGerente{
         }else {
             for(Medico m: medicos){
                 verMedico(m);
-            };
+            }
         }
     }
 
@@ -94,14 +82,14 @@ public class Gerente extends Funcionario implements IGerente{
         System.out.println("Nome: ");
         paciente.nome = sc.next();
 
-        System.out.println("Idade: ");
+     /*   System.out.println("Idade: ");
         paciente.idade = sc.nextInt();
 
-        System.out.println("Sexo[M/F]: ");
+        System.out.println("Sexo: ");
         paciente.sexo = sc.next();
 
         System.out.println("Tipo sanguineo: ");
-        paciente.tipoSanguineo = sc.next();
+        paciente.tipoSanguineo = sc.next();*/
 
        paciente.setIdPaciente(Paciente.numPacientes);
        criarEntrada(paciente);
@@ -110,18 +98,18 @@ public class Gerente extends Funcionario implements IGerente{
 
     }
 
-    @Override
-    public void verPaciente(Paciente paciente){
-        System.out.println(paciente.toString());
-    }
+
 
     @Override
     public void listarPacientes(){
-        if(this.pacientes.size() == 0){
+        if(Gerente.pacientes.size() == 0){
             System.out.println("Nao ha pacientes registados");
         }else{
-            for(Paciente p: pacientes){
-                verPaciente(p);
+            int i =1;
+            System.out.println("Nome          Data de Entrada");
+            for(Paciente p: Gerente.pacientes){
+                System.out.println(i + " - " + p.toString());
+                i++;
             }
         }
     }
@@ -143,11 +131,18 @@ public class Gerente extends Funcionario implements IGerente{
         paciente.setHistorico(entrada);
     }
 
+    @Override
+    public String toString() {
+        return String.format("Nome: %s%nIdade: %d%nTipo de conta: Gerente", this.nome, this.idade);
+    }
+
     public void showMenu(){
-        System.out.println("------Menu Principal-------");
-        System.out.println("1 - Cadastrar Medico");
-        System.out.println("2 - Cadastrar Paciente");
-        System.out.println("3 - Lista de pacientes");
-        System.out.println("4 - Lista de Medicos");
+        System.out.println("------Menu Gerente-------");
+        System.out.println("1 - Cadastrar Medico.");
+        System.out.println("2 - Registar Paciente.");
+        System.out.println("3 - Lista de pacientes.");
+        System.out.println("4 - Lista de Medicos.");
+        System.out.println("5 - Perfil do gerente.");
+        System.out.println("6 - Terminar seccao.");
     }
 }

@@ -26,4 +26,12 @@ public class Paciente extends Pessoa{
     public void setHistorico(Entrada entrada) {
         this.historico.add(entrada);
     }
+
+    @Override
+    public String toString() {
+        int dia = this.historico.get((this.historico.size()) -1).getDiaEntrada();
+        String mes = this.historico.get((this.historico.size() -1)).getMesEntrada();
+        int ano = this.historico.get((this.historico.size() -1)).getAnoEntrada();
+        return String.format("%s       %d/%s/%d", nome, dia, mes, ano);
+    }
 }

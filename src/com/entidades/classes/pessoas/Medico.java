@@ -1,6 +1,5 @@
 package com.entidades.classes.pessoas;
 
-import com.entidades.classes.Funcionario;
 import com.entidades.classes.informacoes.Relatorio;
 import com.entidades.interfaces.IMedico;
 
@@ -13,16 +12,6 @@ public class Medico extends Funcionario implements IMedico {
         numMedicos++;
     }
 
-    public Medico(String nome, int idade, String sexo, String statusPessoa, String tipoSanguineo,
-                  int numRegisto, String especialidade){
-
-        super(nome, idade, sexo, statusPessoa, tipoSanguineo);
-        this.numRegisto = numRegisto;
-        this.especialidade = especialidade;
-    }
-
-    public Medico(){}
-    //Metodos da classe
 
     @Override
     public void atenderPaciente(Paciente paciente){

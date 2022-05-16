@@ -11,18 +11,17 @@ public class Fluxo {
     Scanner sc = new Scanner(System.in);
     private ArrayList<Gerente> gerentes;
     private ArrayList<Medico> medicos;
-    Gerente g  = new Gerente();
+    //Gerente g  = new Gerente();
 
     {
         gerentes = new ArrayList<>();
         medicos = new ArrayList<>();
         this.start();
-
     }
 
     public void start(){
 
-        int choice = 0;
+        int choice ;
             this.startMenu();
             choice = sc.nextInt();
 
@@ -42,46 +41,54 @@ public class Fluxo {
 
 
     }
-
-
-
-    //No gerente
-
-    public void criarMedico(){
-        this.medicos.add(g.cadastrarMedico());
-        this.start();
+    public void startMedico(Medico activo){
+        activo.showMenu();
     }
 
 
-    public void validarLoginGerente(String userneme, String senha){
+    public void startGerente(Gerente activo){ //Quando logar o gerente()
+        int choice = 0;
+        String escolhas;
+        while (choice != 6 && activo != null){
+            activo.showMenu();
+            choice = sc.nextInt();
 
-        Gerente activo = null;
-        for(Gerente g: gerentes){
-            if(g.getLogin().equals(userneme) && g.getSenha().equals(senha)){
-                activo = g;
-                break;
+            switch (choice){
+                case 1:
+                    medicos.add(activo.cadastrarMedico());
+                    System.out.println("Medico cadastrado com sucesso!");
+                    break;
+                case 2:
+                    activo.registarPaciente();
+                    break;
+                case 3:
+                    activo.listarPacientes();
+                    break;
+                case 4:
+                    activo.listarMedicos();
+                    break;
+                case 5:
+                    System.out.println(activo.toString());
+                    break;
+                default:
+                    System.out.println("Opcao invalida!");
+
+            }
+
+            System.out.println("Voltar ao menu Gerente[s/n]?");
+            escolhas = sc.next();
+            if(escolhas.equalsIgnoreCase("s")){
+                continue;
+            }else{
+                choice = 6;
             }
         }
 
-        if(activo != null){
-            usarGerente(activo);
-        }else{
-            System.out.println("Username e/ou senha invalidas!");
-            this.start();
-
-        }
+        activo = null;
+        System.out.println("Seccao terminada com sucesso!");
+        this.start();
     }
 
-    public void usarMedico(Medico activo){
-        activo.showMenu();
-    }
-
-    public void usarGerente(Gerente activo){
-        activo.showMenu();
-    }
-
-
-    // Receber dados de login do gerente
     public void loginGerente(){
         System.out.println("Username: ");
         String username = sc.next();
@@ -89,21 +96,28 @@ public class Fluxo {
         System.out.println("Senha: ");
         String senha = sc.next();
 
-        validarLoginGerente(username, senha);
+        Gerente activo = null;
+        for(Gerente g: gerentes){
+            if(g.validarLogin(username,senha)){
+                activo = g;
+                break;
+            }
+        }
+        if (activo != null){
+           this.startGerente(activo);
+        }else{
+            System.out.println("Username e/ou senha invalidas");
+            this.start();
+        }
+
     }
-
-    // Validar Login do gerente, e abrir o menu do gerente
-
-
-    // Criar gerente, e armazenar no arrat de gerentes
     public void criarGerente(){
+        System.out.println("------Pagina de Cadastro de geretes----");
         Gerente g = new Gerente();
         g.criarGerente();
         gerentes.add(g);
         this.start();
     }
-
-    //Medico
     public void loginMedico(){
         System.out.println("Username: ");
         String username = sc.next();
@@ -111,37 +125,27 @@ public class Fluxo {
         System.out.println("Senha: ");
         String senha = sc.next();
 
-        validarLoginMedico(username, senha);
-    }
-
-    public void validarLoginMedico(String userneme, String senha){
-
         Medico activo = null;
-        for(Medico g: medicos){
-            if(g.getLogin().equals(userneme) && g.getSenha().equals(senha)){
-                activo = g;
-                break;
+        for(Medico m: medicos){
+            if(m.validarLogin(username, senha)){
+                 activo = m;
+                 break;
             }
         }
 
         if(activo != null){
-            usarMedico(activo);
+            this.startMedico(activo);
         }else{
-            System.out.println("Username e/ou senha invalidas!");
-            this.start();
-
+            System.out.println("Username e/ou sehnha invalidas");
         }
     }
-
-    //Acoes de escolhas de Menus
-    //startMenu()
     public void escolherGerente(){
         if(gerentes.size() == 0){
             System.out.println("Sem contas Cadastradas! ");
             System.out.println("Crie uma conta.");
             this.criarGerente();
         }else{
-            int choice =0;
+            int choice;
             this.menuOpcaoLoginGerete();
             choice = sc.nextInt();
             if (choice == 1){
@@ -153,26 +157,22 @@ public class Fluxo {
 
         }
     }
-
     public void escolherMedico(){
-        if(medicos.size() == 0){
+        if(this.medicos.size() == 0){
             System.out.println("Sem contas Cadastradas! ");
-            System.out.println("\nOs medicos devem ser cadastrados pelos Gerentes\n");
+            System.out.println("\nCadastre usando uma comta gerente\n");
             this.start();
         }else{
                 System.out.println("PAGINA DE LOGIN");
                 this.loginMedico();
         }
     }
-
-    // Menus
     public void startMenu(){
-        System.out.println("Entrar como: ");
+        System.out.println("-------Entrar como:------");
         System.out.println("1 - Gerente");
         System.out.println("2 - Medico");
         System.out.println("3 - Fechar");
     }
-
     public void menuOpcaoLoginGerete(){
         System.out.println("1 - Efctuar novo cadastro. ");
         System.out.println("2 - Usar conta existente. ");
